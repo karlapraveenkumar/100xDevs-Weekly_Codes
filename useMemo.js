@@ -73,4 +73,38 @@ export default App;
 
 //3). So using useMemo , no unneccessary renders are there.
 
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import React, {Fragment, useEffect, useMemo, useState} from 'react'
+import axios from "axios"
+
+
+function App() {
+  const [counter, setCounter] = useState(1);
+  const[intialvalue, setIntialvalue] = useState(1);
+  let count = useMemo(()=>{
+    let count = 0;
+    for(let i=1;i<=intialvalue;i++){
+      count = count+i;
+    }
+    return count
+  }, [intialvalue]);
+
+
+  return <div>
+    <input type="text" onChange={(e)=>{setIntialvalue(e.target.value)}}/>
+    <br /><br />
+
+    <div>Sum from 1 to {intialvalue} is : {count}</div>
+
+    <button onClick={()=>{
+      setCounter(counter+1);
+    }}>
+      Counter ({counter}) 
+    </button>
+  </div>
+}
+
+export default App;
 
