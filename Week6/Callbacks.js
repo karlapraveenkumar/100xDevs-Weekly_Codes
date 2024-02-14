@@ -34,3 +34,49 @@ const Child = memo(({inputfunction})=>{
 })
 
 export default App;
+
+2)// Another problem for useCallback
+
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import React, {Fragment, memo, useCallback, useEffect, useMemo, useState} from 'react'
+import axios from "axios"
+
+
+function App() {
+  const[exchangedata1, setExchangedata1] = useState({});
+  const[exchangedata2, setExchangedata2] = useState({});
+  const[bankdata, setBankdata] = useState({});
+  
+
+  useEffect(()=>{setTimeout(function(){
+    setBankdata({income : 100});
+  },5000)},[])
+  
+  useEffect(()=>{
+    setExchangedata1({returns : 100});
+  },[])
+
+  useEffect(()=>{
+    setExchangedata2({returns : 100});
+  },[])
+  
+  const totalreturns = useCallback(function(){
+    return exchangedata1.returns + exchangedata2.returns;
+  },[exchangedata1,exchangedata2])
+  
+
+  return <div>
+    <Child totalreturns = {totalreturns}/>
+
+  </div>
+}
+const Child = memo(function({totalreturns}){
+  console.log("Crypto currency  child rerendeer");
+  return <div>
+    Your crypto returns are {totalreturns()}
+  </div>
+})
+
+export default App;
