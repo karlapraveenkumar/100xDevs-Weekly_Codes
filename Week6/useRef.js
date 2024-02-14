@@ -23,3 +23,31 @@ function App() {
 }
 
 export default App;
+
+2).. Best example for useRef
+
+import React, { useRef, useState } from 'react';
+
+function MyComponent() {
+  const countRef = useRef(0);
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    // Access and modify the ref without causing a re-render
+    countRef.current += 1;
+    console.log("Count reference value "+ countRef.current);
+    // Trigger a re-render by updating state
+    setCount(count + 1);
+    console.log("state variable value "+count);
+  };
+
+  console.log("state variable value2 is "+count);
+  return (
+    <div>
+      <p>State Count: {count}</p>
+      <p>Ref Count: {countRef.current}</p>
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+}
+export default MyComponent
