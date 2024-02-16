@@ -35,3 +35,14 @@ function Appbar(){
 }
 
 export default App
+//2 Components created for Landingpage and Dashboard these were imported
+export default function Dashboard(){
+    return <div>
+        Dashboard page
+    </div>
+}
+export default function Landing(){
+    return <div>
+        Landing page
+    </div>
+}
