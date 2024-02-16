@@ -70,4 +70,7 @@ function Buttons({setCount}){
   </div>
 }
 export default App
-
+// This is in created in another file named context.jsx
+import { createContext } from "react";
+//This is teleporting part, better like this in other file
+export const Countcontext = createContext(0);
