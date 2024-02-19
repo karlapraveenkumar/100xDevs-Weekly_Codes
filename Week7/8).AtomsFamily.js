@@ -80,3 +80,24 @@ export const TODOS = [
         description : "What is your name"
     },
 ]
+
+//2)useRecoilStateLoadable used in this code to handle errors(showing) when fetching delayed due to some errors. I have mentioned only Todo function
+
+function Todo({id}){
+  const [currentTodo,setCurrentTodo] = useRecoilStateLoadable(todoAtomFamily(id));
+  //console.log(currentTodo.title);
+  if(currentTodo.state == "loading"){
+    return <div>loading...</div>
+  }else if(currentTodo.state === "hasValue"){
+    return <>
+    {currentTodo.contents.title} <br />
+    {currentTodo.contents.description}
+    <br />
+  </>
+  }else if(currentTodo.state === "hasError"){
+    return <div>
+      Error while loading from backend...
+    </div>
+  }
+
+}
